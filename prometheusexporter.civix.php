@@ -100,8 +100,9 @@ function _prometheusexporter_civix_civicrm_config(&$config = NULL) {
     $template->addTemplateDir($extDir);
   } else {
     // Smarty 3/4 méthode legacy
-    if (is_array($template->getTemplateDir())) {
-      array_unshift($template->getTemplateDir(), $extDir);
+    $templateDirs = $template->getTemplateDir();
+    if (is_array($templateDirs)) {
+      array_unshift($templateDirs, $extDir);
     }
     else {
 		$template->addTemplateDir($extDir);
