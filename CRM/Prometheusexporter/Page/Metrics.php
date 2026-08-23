@@ -173,9 +173,10 @@ class CRM_Prometheusexporter_Page_Metrics extends CRM_Core_Page {
     $lines[] = '';
     $lines[] = '# HELP civicrm_cron_ok Whether the last cron run check passes.';
     $lines[] = '# TYPE civicrm_cron_ok gauge';
-    $lines[] = sprintf('civicrm_cron_ok %d', $this->checkOk($messages, 'checkLastCron') ? 1 : 0);
-
     $lastCronTimestamp = $this->getLastCronTimestamp();
+    $cronCheckOk = $this->checkOk($messages, 'checkLastCron') && $lastCronTimestamp !== NULL;
+    $lines[] = sprintf('civicrm_cron_ok %d', $cronCheckOk ? 1 : 0);
+
     if ($lastCronTimestamp !== NULL) {
       $lines[] = '';
       $lines[] = '# HELP civicrm_cron_last_run_timestamp Unix timestamp of the most recent scheduled job run.';
