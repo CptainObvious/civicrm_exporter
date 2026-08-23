@@ -191,8 +191,8 @@ class CRM_Prometheusexporter_Page_Metrics extends CRM_Core_Page {
 
   private function getStatusMessages(): array {
     try {
-      $result = civicrm_api3('System', 'check', []);
-      return $result['values'] ?? [];
+      $result = \Civi\Api4\System::check(FALSE)->execute();
+      return $result->getArrayCopy();
     }
     catch (CRM_Core_Exception) {
       return [];
@@ -228,12 +228,14 @@ class CRM_Prometheusexporter_Page_Metrics extends CRM_Core_Page {
 
   private function getLastCronTimestamp(): ?int {
     try {
-      $result = civicrm_api3('Job', 'get', [
-        'is_active' => 1,
-        'options' => ['sort' => 'last_run DESC', 'limit' => 1],
-        'return' => ['last_run'],
-      ]);
-      $job = reset($result['values']);
+      $jobs = \Civi\Api4\Job::get(FALSE)
+        ->addWhere('is_active', '=', TRUE)
+        ->addOrderBy('last_run', 'DESC')
+        ->setLimit(1)
+        ->addSelect('last_run')
+        ->execute()
+        ->getArrayCopy();
+      $job = reset($jobs);
       $timestamp = $job['last_run'] ?? NULL;
 
       return $timestamp ? strtotime((string) $timestamp) ?: NULL : NULL;
