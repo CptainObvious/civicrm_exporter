@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+  <item>
+    <path>civicrm/prometheusmetrics</path>
+    <page_callback>CRM_Prometheusexporter_Page_Metrics</page_callback>
+    <access_callback>1</access_callback>
+    <is_public>true</is_public>
+    <weight>0</weight>
+  </item>
+  <item>
+    <path>civicrm/admin/setting/prometheusexporter</path>
+    <title>Prometheus Exporter Settings</title>
+    <page_callback>CRM_Admin_Form_Generic</page_callback>
+    <access_arguments>administer CiviCRM</access_arguments>
+    <page_type>1</page_type>
+    <weight>1</weight>
+  </item>
+</menu>

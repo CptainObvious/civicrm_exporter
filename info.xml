@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<extension key="fr.tasperdu.civicrmexporter" type="module">
+  <file>prometheusexporter</file>
+  <name>CiviCRM Prometheus Exporter</name>
+  <description>Exposes CiviCRM's system status (the same checks shown at civicrm/a/#/status) as a Prometheus-scrapable metrics endpoint: overall status, cron health, and core version updates.</description>
+  <license>AGPL-3.0</license>
+  <maintainer>
+    <author>CptainObvious</author>
+    <email>github@tasperdu.fr</email>
+	<role>Maintainer</role>
+  </maintainer>
+  <urls>
+    <url desc="Main Extension Page">https://github.com/CptainObvious/civicrm_exporter</url>
+    <url desc="Support">https://github.com/CptainObvious/civicrm_exporter/issues</url>
+    <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
+  </urls>
+  <releaseDate>2026-08-20</releaseDate>
+  <version>1.0.1</version>
+  <develStage>stable</develStage>
+  <compatibility>
+    <ver>5.60</ver>
+    <ver>6.0</ver>
+	<ver>6.12</ver>
+  </compatibility>
+  <mixins>
+    <mixin>menu-xml@1.0.0</mixin>
+    <mixin>setting-php@1.0.0</mixin>
+    <mixin>setting-admin@1.0.0</mixin>
+  </mixins>
+</extension>
