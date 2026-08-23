@@ -16,6 +16,7 @@ with, not just the three called out below.
 | Metric | Meaning |
 |---|---|
 | `civicrm_status_global` | Overall status: `0`=ok, `1`=warning, `2`=error. This is the worst severity across **all** status checks, not just the three below. |
+| `civicrm_version_info` | Always `1`, with the installed CiviCRM release in the `version` label (for example: `civicrm_version_info{version=6.12.0} 1`). |
 | `civicrm_status_check_severity{name,severity}` | Severity (0-7) of every individual status check, labeled by its internal check name (e.g. `checkLastCron`, `checkExtensions`, `checkVersion`, `checkOutboundMail`, ...). |
 | `civicrm_status_check_count` | Total number of status-check messages currently active. |
 | `civicrm_cron_ok` | `1`/`0` - whether the "last cron run" check passes. |

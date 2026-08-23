@@ -158,6 +158,14 @@ class CRM_Prometheusexporter_Page_Metrics extends CRM_Core_Page {
     $lines[] = sprintf('civicrm_status_global %d', $globalStatus);
 
     $lines[] = '';
+    $lines[] = '# HELP civicrm_version_info Installed CiviCRM version.';
+    $lines[] = '# TYPE civicrm_version_info gauge';
+    $lines[] = sprintf(
+      'civicrm_version_info{version=%s} 1',
+      $this->escapeLabel($this->getCiviCrmVersion())
+    );
+
+    $lines[] = '';
     $lines[] = '# HELP civicrm_status_check_count Number of active system status check messages.';
     $lines[] = '# TYPE civicrm_status_check_count gauge';
     $lines[] = sprintf('civicrm_status_check_count %d', $checkCount);
@@ -197,6 +205,10 @@ class CRM_Prometheusexporter_Page_Metrics extends CRM_Core_Page {
     catch (CRM_Core_Exception) {
       return [];
     }
+  }
+
+  private function getCiviCrmVersion(): string {
+    return (string) CRM_Utils_System::version();
   }
 
   private function checkOk(array $messages, string $name): bool {
