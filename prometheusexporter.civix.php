@@ -8,7 +8,7 @@
  */
 class CRM_Prometheusexporter_ExtensionUtil {
   const SHORT_NAME = 'prometheusexporter';
-  const LONG_NAME = 'org.example.prometheusexporter';
+  const LONG_NAME = 'fr.tasperdu.prometheusexporter';
   const CLASS_PREFIX = 'CRM_Prometheusexporter';
 
   /**
