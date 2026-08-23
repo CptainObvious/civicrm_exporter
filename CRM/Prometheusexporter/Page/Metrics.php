@@ -177,12 +177,10 @@ class CRM_Prometheusexporter_Page_Metrics extends CRM_Core_Page {
     $cronCheckOk = $this->checkOk($messages, 'checkLastCron') && $lastCronTimestamp !== NULL;
     $lines[] = sprintf('civicrm_cron_ok %d', $cronCheckOk ? 1 : 0);
 
-    if ($lastCronTimestamp !== NULL) {
-      $lines[] = '';
-      $lines[] = '# HELP civicrm_cron_last_run_timestamp Unix timestamp of the most recent scheduled job run.';
-      $lines[] = '# TYPE civicrm_cron_last_run_timestamp gauge';
+    $lines[] = '';
+    $lines[] = '# HELP civicrm_cron_last_run_timestamp Unix timestamp of the most recent scheduled job run, or 0 if none has been recorded.';
+    $lines[] = '# TYPE civicrm_cron_last_run_timestamp gauge';
     $lines[] = sprintf('civicrm_cron_last_run_timestamp %d', $lastCronTimestamp);
-    }
 
     $coreUpdateChecks = [
       'civicrm_core_update_available' => 'checkVersion_upgrade',

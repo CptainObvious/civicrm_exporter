@@ -20,7 +20,7 @@ with, not just the three called out below.
 | `civicrm_status_check_severity{name,severity}` | Severity (0-7) of every individual status check, labeled by its internal check name (e.g. `checkLastCron`, `checkExtensions`, `checkVersion`, `checkOutboundMail`, ...). |
 | `civicrm_status_check_count` | Total number of status-check messages currently active. |
 | `civicrm_cron_ok` | `1`/`0` - whether the "last cron run" check passes and at least one cron run has been recorded. |
-| `civicrm_cron_last_run_timestamp` | Unix timestamp of the most recent active scheduled-job run (best-effort proxy for "cron last ran"). |
+| `civicrm_cron_last_run_timestamp` | Unix timestamp of the most recent active scheduled-job run (best-effort proxy for "cron last ran"), or `0` when no run has been recorded. |
 | `civicrm_extension_update_available` | `1`/`0` - whether CiviCRM's extension-update check is flagging an available update. |
 | `civicrm_core_update_available` | `1`/`0` - whether CiviCRM's core-version check is flagging an available update. |
 
