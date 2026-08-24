@@ -38,9 +38,8 @@ class CRM_Prometheusexporter_Page_Metrics extends CRM_Core_Page {
     }
 
     $provided = CRM_Utils_Request::retrieve('token', 'String', $this, FALSE);
-    if (!$provided && !empty($_SERVER['HTTP_AUTHORIZATION'])) {
-      preg_match('/^Bearer\s+(.+)$/i', trim($_SERVER['HTTP_AUTHORIZATION']), $matches);
-      $provided = $matches[1] ?? NULL;
+    if (!$provided && !empty($_SERVER['HTTP_X_CIVICRM_TOKEN'])) {
+      $provided = trim((string) $_SERVER['HTTP_X_CIVICRM_TOKEN']);
     }
 
     if (!is_string($provided) || $provided === '' || !hash_equals($expected, $provided)) {

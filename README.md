@@ -70,15 +70,19 @@ scrape_configs:
     scheme: https
 ```
 
-Or using a bearer token instead (avoids the secret showing up in the URL /
-web server access logs):
+Or using the `X-CiviCRM-Token` header instead (avoids the secret showing up
+in the URL / web server access logs):
 
 ```yaml
 scrape_configs:
   - job_name: civicrm
     metrics_path: /civicrm/prometheus-metrics
     authorization:
-      credentials: CHANGE-ME-TO-SOMETHING-RANDOM
+      type: Bearer
+      credentials: ''
+    # Prometheus cannot send arbitrary header names through `authorization`,
+    # so add a custom HTTP header at the scrape-manager/reverse-proxy layer:
+    # X-CiviCRM-Token: CHANGE-ME-TO-SOMETHING-RANDOM
     static_configs:
       - targets: ['your-site.example.org']
     scheme: https
@@ -94,7 +98,7 @@ scrape_configs:
      (`hash_equals`).
   **The endpoint returns 403 for everything until the token setting is
   non-empty**, even if the IP allowlist is left empty.
-- Prefer the `Authorization: Bearer` header over the `?token=` query param
+- Prefer the `X-CiviCRM-Token` header over the `?token=` query param
   where your scrape setup supports it, to keep the secret out of access
   logs.
 - The IP allowlist uses the direct TCP connection's address

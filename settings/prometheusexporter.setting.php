@@ -23,7 +23,7 @@ return [
     'is_contact' => 0,
     'title' => ts('Prometheus Exporter Token'),
     'is_required' => FALSE,
-    'description' => ts('Shared secret required to access the /civicrm/prometheus-metrics endpoint, either as a ?token=... query parameter or an "Authorization: Bearer <token>" header. Leave empty to disable the endpoint entirely.'),
+    'description' => ts('Shared secret required to access the /civicrm/prometheus-metrics endpoint, either as a ?token=... query parameter or an "X-CiviCRM-Token: <token>" header. Leave empty to disable the endpoint entirely.'),
     'help_text' => ts('Generate a long random value; treat it like a password.'),
     'settings_pages' => ['prometheusexporter' => ['weight' => 10]],
   ],
