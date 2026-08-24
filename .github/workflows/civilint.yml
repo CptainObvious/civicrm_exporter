@@ -19,24 +19,13 @@ jobs:
         with:
           php-version: '8.3'
           coverage: none
-          tools: phpcs
+          tools: composer
 
       - name: Install civilint dependencies
         run: |
-          composer global require --prefer-dist --no-interaction squizlabs/php_codesniffer:^3.13
-          echo "$HOME/.composer/vendor/bin" >> "$GITHUB_PATH"
-          mkdir -p "$HOME/.composer/vendor/drupal"
-          git clone --depth 1 --branch 8.x-2.x-civi \
-            https://github.com/civicrm/coder.git \
-            "$HOME/.composer/vendor/drupal/coder"
-          phpcs --config-set installed_paths "$HOME/.composer/vendor/drupal/coder/coder_sniffer"
-
-      - name: Download civilint
-        run: |
-          curl --fail --location --silent --show-error \
-            --output /usr/local/bin/civilint \
-            https://raw.githubusercontent.com/civicrm/civicrm-buildkit/refs/heads/master/bin/civilint
-          chmod +x /usr/local/bin/civilint
+          git clone --depth 1 https://github.com/civicrm/civicrm-buildkit.git /opt/civicrm-buildkit
+          cd /opt/civicrm-buildkit
+          composer install --prefer-dist --no-interaction --no-progress
 
       - name: Run civilint
-        run: git ls-files '*.php' '*.js' '*.css' | xargs -r -n 25 civilint
+        run: git ls-files '*.php' '*.js' '*.css' | /opt/civicrm-buildkit/bin/civilint -
