@@ -159,7 +159,7 @@ class CRM_Prometheusexporter_Page_Metrics extends CRM_Core_Page {
     $lines[] = '# HELP civicrm_version_info Installed CiviCRM version.';
     $lines[] = '# TYPE civicrm_version_info gauge';
     $lines[] = sprintf(
-      'civicrm_version_info{version=%s} 1',
+      'civicrm_version_info{version="%s"} 1',
       $this->escapeLabel($this->getCiviCrmVersion())
     );
 
