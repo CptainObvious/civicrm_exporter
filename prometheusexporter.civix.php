@@ -74,6 +74,7 @@ class CRM_Prometheusexporter_ExtensionUtil {
   public static function findClass($suffix) {
     return self::CLASS_PREFIX . '_' . $suffix;
   }
+
 }
 
 use CRM_Prometheusexporter_ExtensionUtil as E;
@@ -98,7 +99,8 @@ function _prometheusexporter_civix_civicrm_config(&$config = NULL) {
   if (method_exists($template, 'addTemplateDir')) {
     // Smarty 5+ méthode
     $template->addTemplateDir($extDir);
-  } else {
+  }
+  else {
     // Smarty 3/4 méthode legacy
     $templateDirs = $template->getTemplateDir();
     if (is_array($templateDirs)) {
