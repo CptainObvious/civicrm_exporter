@@ -105,7 +105,7 @@ function _prometheusexporter_civix_civicrm_config(&$config = NULL) {
       array_unshift($templateDirs, $extDir);
     }
     else {
-		$template->addTemplateDir($extDir);
+      $template->addTemplateDir($extDir);
     }
   }
 
