@@ -35,7 +35,7 @@ jobs:
         run: |
           curl --fail --location --silent --show-error \
             --output /usr/local/bin/civilint \
-            https://raw.githubusercontent.com/civicrm/civicrm-buildkit/v2025.01.14/bin/civilint
+            https://raw.githubusercontent.com/civicrm/civicrm-buildkit/refs/heads/master/bin/civilint
           chmod +x /usr/local/bin/civilint
 
       - name: Run civilint
