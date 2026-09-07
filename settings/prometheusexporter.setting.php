@@ -16,7 +16,7 @@ return [
   'prometheusexporter_token' => [
     'name' => 'prometheusexporter_token',
     'type' => 'String',
-    'html_type' => 'text',
+    'html_type' => 'password',
     'default' => '',
     'add' => '5.0',
     'is_domain' => 1,
