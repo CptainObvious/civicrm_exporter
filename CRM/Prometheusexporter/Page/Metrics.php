@@ -17,7 +17,7 @@ class CRM_Prometheusexporter_Page_Metrics extends CRM_Core_Page {
     'alert' => 6,
     'emergency' => 7,
   ];
-
+  private const INFO_THRESHOLD = 1;
   private const WARNING_THRESHOLD = 3;
   private const ERROR_THRESHOLD = 4;
 
@@ -222,7 +222,7 @@ class CRM_Prometheusexporter_Page_Metrics extends CRM_Core_Page {
   private function checkFlagged(array $messages, string $name): bool {
     foreach ($messages as $message) {
       if (($message['name'] ?? NULL) === $name
-        && $this->getSeverity($message) >= self::WARNING_THRESHOLD) {
+        && $this->getSeverity($message) >= self::INFO_THRESHOLD) {
         return TRUE;
       }
     }
